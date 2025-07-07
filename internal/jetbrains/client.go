@@ -49,12 +49,17 @@ func InitializeFromConfig() error {
 		if cfg.HealthCheckInterval > 0 {
 			healthChecker.SetCheckInterval(cfg.HealthCheckInterval)
 		}
+		// 根据配置设置HTTP代理
+		utils.RestySSEClient.SetProxy(cfg.ProxyURL)
+		healthChecker.SetProxy(cfg.ProxyURL)
+
 		healthChecker.Start()
 
 		log.Printf("JWT balancer initialized from config:")
 		log.Printf("  - Tokens: %d", len(tokens))
 		log.Printf("  - Strategy: %s", cfg.LoadBalanceStrategy)
 		log.Printf("  - Health check interval: %v", cfg.HealthCheckInterval)
+		log.Printf("  - Proxy URL: %s", cfg.ProxyURL)
 	})
 
 	return initErr
@@ -116,6 +121,14 @@ func ReloadConfig() error {
 		healthChecker.SetCheckInterval(cfg.HealthCheckInterval)
 	}
 
+	// 更新HTTP代理设置
+	utils.RestySSEClient.SetProxy(cfg.ProxyURL)
+	if healthChecker != nil {
+		healthChecker.SetProxy(cfg.ProxyURL)
+	}
+
+	log.Printf("Proxy URL updated to: %s", cfg.ProxyURL)
+
 	log.Printf("Config reloaded successfully:")
 	log.Printf("  - Tokens: %d", len(tokens))
 	log.Printf("  - Strategy: %s", cfg.LoadBalanceStrategy)
@@ -146,6 +159,7 @@ func SendJetbrainsRequest(ctx context.Context, req *types.JetbrainsRequest) (*re
 	resp, err := utils.RestySSEClient.R().
 		SetContext(ctx).
 		SetHeader(types.JwtTokenKey, token).
+		SetHeader("User-Agent", "ktor-client").
 		SetDoNotParseResponse(true).
 		SetBody(req).
 		Post(types.ChatStreamV7)

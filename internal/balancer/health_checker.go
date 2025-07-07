@@ -170,6 +170,7 @@ func (hc *HealthChecker) testTokenRequest(ctx context.Context, token string, req
 	resp, err := hc.client.R().
 		SetContext(ctx).
 		SetHeader(types.JwtTokenKey, token).
+		SetHeader("User-Agent", "ktor-client").
 		SetBody(req).
 		Post(types.ChatStreamV7)
 
@@ -189,8 +190,8 @@ func (hc *HealthChecker) testTokenRequest(ctx context.Context, token string, req
 		return true
 	}
 
-	log.Printf("Health check failed for token %s...: status %d",
-		token[:min(len(token), 10)], resp.StatusCode())
+	log.Printf("Health check failed for token %s...: status %d, body: %s",
+		token[:min(len(token), 10)], resp.StatusCode(), resp.String())
 	return false
 }
 
@@ -213,4 +214,17 @@ func (hc *HealthChecker) SetMaxRetries(retries int) {
 	hc.mutex.Lock()
 	defer hc.mutex.Unlock()
 	hc.maxRetries = retries
+}
+
+// SetProxy 设置HTTP代理
+func (hc *HealthChecker) SetProxy(proxyURL string) {
+	hc.mutex.Lock()
+	defer hc.mutex.Unlock()
+
+	if proxyURL != "" {
+		hc.client.SetProxy(proxyURL)
+	} else {
+		// 传入空字符串可以清除代理设置
+		hc.client.SetProxy("")
+	}
 }
