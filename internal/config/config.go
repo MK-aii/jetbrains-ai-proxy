@@ -44,6 +44,7 @@ type Config struct {
 	HealthCheckInterval time.Duration       `json:"health_check_interval"`
 	ServerPort          int                 `json:"server_port"`
 	ServerHost          string              `json:"server_host"`
+	ProxyURL            string              `json:"proxy_url,omitempty"`
 }
 
 // Manager 配置管理器
@@ -171,6 +172,11 @@ func (m *Manager) loadFromEnv() {
 	if host := os.Getenv("SERVER_HOST"); host != "" {
 		m.config.ServerHost = host
 	}
+
+	// Proxy URL
+	if proxyURL := os.Getenv("PROXY_URL"); proxyURL != "" {
+		m.config.ProxyURL = proxyURL
+	}
 }
 
 // parseJWTTokens 解析JWT tokens字符串
@@ -211,6 +217,9 @@ func (m *Manager) mergeConfig(other *Config) {
 	}
 	if other.ServerHost != "" {
 		m.config.ServerHost = other.ServerHost
+	}
+	if other.ProxyURL != "" {
+		m.config.ProxyURL = other.ProxyURL
 	}
 }
 
@@ -356,6 +365,7 @@ func (m *Manager) GenerateExampleConfig(path string) error {
 		HealthCheckInterval: 30 * time.Second,
 		ServerPort:          8080,
 		ServerHost:          "0.0.0.0",
+		ProxyURL:            "",
 	}
 
 	// 确保目录存在
@@ -390,6 +400,7 @@ func (m *Manager) PrintConfig() {
 	fmt.Printf("Load Balance Strategy: %s\n", m.config.LoadBalanceStrategy)
 	fmt.Printf("Health Check Interval: %v\n", m.config.HealthCheckInterval)
 	fmt.Printf("Server: %s:%d\n", m.config.ServerHost, m.config.ServerPort)
+	fmt.Printf("Proxy URL: %s\n", m.config.ProxyURL)
 	if m.configPath != "" {
 		fmt.Printf("Config File: %s\n", m.configPath)
 	}
@@ -427,4 +438,12 @@ func LoadConfig() *Config {
 
 	JetbrainsAiConfig = manager.GetConfig()
 	return JetbrainsAiConfig
+}
+
+// SetProxyURL 设置HTTP代理地址
+func (m *Manager) SetProxyURL(proxy string) {
+	m.mutex.Lock()
+	defer m.mutex.Unlock()
+	
+	m.config.ProxyURL = proxy
 }

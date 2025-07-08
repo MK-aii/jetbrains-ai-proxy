@@ -154,6 +154,9 @@ BEARER_TOKEN=your_bearer_token_here
 # Load balancing strategy: round_robin or random
 LOAD_BALANCE_STRATEGY=round_robin
 
+# HTTP proxy
+PROXY_URL=http://127.0.0.1:7890
+
 # Server configuration
 SERVER_HOST=0.0.0.0
 SERVER_PORT=8080
